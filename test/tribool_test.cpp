@@ -118,11 +118,13 @@ int test_main(int, char*[])
   constexpr bool res_ors = indeterminate(false || tribool(false) || false || indeterminate); // true
   BOOST_CHECK(res_ors);
   char array_ors[res_ors ? 2 : 3];
+  (void)array_ors;
   BOOST_CHECK(sizeof(array_ors) / sizeof(char) == 2);
 
   constexpr bool res_ands = !indeterminate(!(true && tribool(true) && true && indeterminate)); // false
   BOOST_CHECK(!res_ands);
   char array_ands[res_ands ? 2 : 3];
+  (void)array_ands;
   BOOST_CHECK(sizeof(array_ands) / sizeof(char) == 3);
 
   // We avoid checking the tribool::operator safe_bool(),
